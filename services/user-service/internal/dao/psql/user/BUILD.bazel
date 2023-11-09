@@ -1,0 +1,12 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "user",
+    srcs = ["user.go"],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/user-service/internal/dao/psql/user",
+    visibility = ["//services/user-service:__subpackages__"],
+    deps = [
+        "//services/common/dao/models",
+        "//services/user-service/internal/dao/psql",
+    ],
+)

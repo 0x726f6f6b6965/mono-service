@@ -1,0 +1,10 @@
+version: v1
+
+breaking:
+  use:
+    - PACKAGE
+lint:
+  use:
+    - DEFAULT
+# deps:
+#   - buf.build/googleapis/googleapis

@@ -1,0 +1,21 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "graph",
+    srcs = [
+        "generated.go",
+        "resolver.go",
+        "schema.resolvers.go",
+    ],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/graph-service/graph",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//services/graph-service/internal/middleware",
+        "//services/graph-service/internal/model",
+        "//services/graph-service/internal/service",
+        "@com_github_99designs_gqlgen//graphql",
+        "@com_github_99designs_gqlgen//graphql/introspection",
+        "@com_github_vektah_gqlparser_v2//:gqlparser",
+        "@com_github_vektah_gqlparser_v2//ast",
+    ],
+)

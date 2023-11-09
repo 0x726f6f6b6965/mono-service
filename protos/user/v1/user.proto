@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package user.v1;
+
+option go_package = "github.com/0x726f6f6b6965/mono-service/protos/user/v1;v1";
+
+import "common/v1/common.proto";
+
+message GetUserRequest {
+    string id = 1;
+    string username = 2;
+}
+
+message GetUserResponse {
+    string id = 1;
+    string username = 2;
+    string password = 3;
+    common.v1.RoleType role_type = 4;
+}
+
+message SetUserRequest {
+    string id = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message SetUserResponse {
+    string id = 1;
+    bool ok = 2;
+}
+
+message SetUserRoleRequest {
+    string id = 1;
+    string username = 2;
+    common.v1.RoleType role_type = 3;
+}
+
+message SetUserRoleResponse {
+    string id = 1;
+    bool ok = 2;
+}

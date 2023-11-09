@@ -1,0 +1,13 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "dao",
+    srcs = ["gorm.go"],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/common/dao",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//services/common/consts",
+        "@io_gorm_driver_postgres//:postgres",
+        "@io_gorm_gorm//:gorm",
+    ],
+)

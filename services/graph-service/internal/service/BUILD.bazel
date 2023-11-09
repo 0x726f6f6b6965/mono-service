@@ -1,0 +1,24 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "service",
+    srcs = [
+        "auth_service.go",
+        "opa_service.go",
+    ],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/graph-service/internal/service",
+    visibility = ["//services/graph-service:__subpackages__"],
+    deps = [
+        "//protos/common/v1:common",
+        "//protos/user/v1:user",
+        "//services/graph-service/internal/model",
+        "//services/graph-service/internal/utils",
+        "@com_github_google_uuid//:uuid",
+        "@com_github_open_policy_agent_opa//rego",
+        "@com_github_open_policy_agent_opa//storage/inmem",
+        "@com_github_open_policy_agent_opa//util",
+        "@org_golang_google_grpc//:grpc",
+        "@org_golang_google_grpc//credentials/insecure",
+        "@org_golang_x_crypto//bcrypt",
+    ],
+)

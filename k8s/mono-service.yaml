@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mono-service
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mono-service
+  template:
+    metadata:
+      labels:
+        app: mono-service
+    spec:
+      containers:
+        - name: graph
+          image: 0x726f6f6b6965/mono-service-graph-service:v1
+          volumeMounts:
+            - mountPath: /apps/policy
+              name: policy-volume
+            - mountPath: /apps/allow_uri.json
+              name: rule-volume
+          ports:
+            - containerPort: 8080
+          env:
+            - name: GRPC_USER_PORT
+              value: "5111"
+            - name: GRPC_USER
+              value: localhost
+            - name: JWT_SECRET_KEY
+              value: ${JWT_SECRET_KEY}
+            - name: JWT_SECRET_KEY_EXPIRE_MINUTES_COUNT
+              value: "15"
+            - name: POLICY_AUTH
+              value: /apps/policy/auth.rego
+            - name: AUTH_DATA
+              value: /apps/allow_uri.json
+        - name: users
+          image: 0x726f6f6b6965/mono-service-user-service:v1
+          env: 
+            - name: GRPC_USER_PORT
+              value: "5111"
+            - name: POSTGRES_HOST
+              value: localhost
+            - name: POSTGRES_DB
+              value: ${POSTGRES_DB}
+            - name: POSTGRES_USER
+              value: ${POSTGRES_USER}
+            - name: POSTGRES_PASSWORD
+              value: ${POSTGRES_PASSWORD}
+            - name: POSTGRES_PORT
+              value: "5432"
+        - name: psqls
+          image: postgres:latest
+          env: 
+            - name: POSTGRES_DB
+              value: ${POSTGRES_DB}
+            - name: POSTGRES_USER
+              value: ${POSTGRES_USER}
+            - name: POSTGRES_PASSWORD
+              value: ${POSTGRES_PASSWORD}
+            - name: POSTGRES_PORT
+              value: "5432"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data 
+              name: db-volume
+      volumes:
+        - name: policy-volume
+          hostPath:
+            path: /Users/edison.song/Documents/coding/side-project/mono-service/policy
+            type: Directory
+        - name: rule-volume
+          hostPath:
+            path: /Users/edison.song/Documents/coding/side-project/mono-service/rule-data/allow_uri.json
+            type: File
+        - name: db-volume
+          hostPath:
+            path: /Users/edison.song/Documents/coding/side-project/mono-service/psql-data
+            type: Directory

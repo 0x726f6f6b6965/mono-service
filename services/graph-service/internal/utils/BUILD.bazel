@@ -1,0 +1,15 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "utils",
+    srcs = [
+        "auth.go",
+        "role.go",
+    ],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/graph-service/internal/utils",
+    visibility = ["//services/graph-service:__subpackages__"],
+    deps = [
+        "//protos/common/v1:common",
+        "@com_github_golang_jwt_jwt_v4//:jwt",
+    ],
+)

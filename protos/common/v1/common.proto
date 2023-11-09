@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package common.v1;
+
+option go_package = "github.com/0x726f6f6b6965/mono-service/protos/common/v1;v1";
+
+enum ServiceType {
+    SERVICE_TYPE_UNSPECIFIED = 0;
+    SERVICE_TYPE_RULE = 1;
+}
+
+enum RoleType {
+    ROLE_TYPE_UNSPECIFIED = 0;
+    ROLE_TYPE_ADMIN = 1;
+    ROLE_TYPE_VIEWER = 2;
+    ROLE_TYPE_GUEST = 3;
+}

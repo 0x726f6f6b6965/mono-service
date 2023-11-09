@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+import "user/v1/user.proto";
+
+package user.v1;
+
+option go_package = "github.com/0x726f6f6b6965/mono-service/protos/user/v1;v1";
+
+service UserService {
+    rpc GetUser (GetUserRequest) returns (GetUserResponse) {};
+
+    rpc SetUser(SetUserRequest) returns (SetUserResponse) {};
+
+    rpc SetUserRole(SetUserRoleRequest) returns (SetUserRoleResponse) {};
+}

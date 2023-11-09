@@ -1,0 +1,16 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "service",
+    srcs = ["user_service.go"],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/user-service/internal/service",
+    visibility = ["//services/user-service:__subpackages__"],
+    deps = [
+        "//protos/common/v1:common",
+        "//protos/user/v1:user",
+        "//services/common/dao/models",
+        "//services/user-service/internal/dao/psql/user",
+        "@org_golang_google_grpc//codes",
+        "@org_golang_google_grpc//status",
+    ],
+)

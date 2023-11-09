@@ -1,0 +1,6 @@
+.env
+bazel-bin
+bazel-mono-service
+bazel-out
+bazel-testlogs
+psql-data

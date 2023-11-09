@@ -1,0 +1,9 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "middleware",
+    srcs = ["auth.go"],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/graph-service/internal/middleware",
+    visibility = ["//services/graph-service:__subpackages__"],
+    deps = ["//services/graph-service/internal/utils"],
+)

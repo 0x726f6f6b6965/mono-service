@@ -1,0 +1,33 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+scalar Time
+
+type UserRole {
+  username: String!
+  role: String!
+  createdAt: Time!
+  updatedAt: Time
+}
+
+input LoginInput {
+  username: String!
+  password: String!
+}
+
+input NewUser {
+  username: String!
+  password: String!
+}
+
+input EditRole {
+  username: String!
+  role: String!
+}
+
+type Mutation {
+  login(input: LoginInput!): String!
+  register(input: NewUser!): String!
+  editRole(input: EditRole): UserRole!
+}

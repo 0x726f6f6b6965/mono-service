@@ -1,0 +1,13 @@
+load("@rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "psql",
+    srcs = ["init.go"],
+    importpath = "github.com/0x726f6f6b6965/mono-service/services/user-service/internal/dao/psql",
+    visibility = ["//services/user-service:__subpackages__"],
+    deps = [
+        "//services/common/consts",
+        "//services/common/dao",
+        "@io_gorm_gorm//:gorm",
+    ],
+)

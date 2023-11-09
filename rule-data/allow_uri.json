@@ -1,0 +1,17 @@
+{
+    "uri": {
+        "ROLE_TYPE_ADMIN": [
+            {"path": "editRole"},
+            {"path": "login"},
+            {"path": "register"}
+        ],
+        "ROLE_TYPE_VIEWER": [
+            {"path": "login"},
+            {"path": "register"}
+        ],
+        "ROLE_TYPE_GUEST": [
+            {"path": "login"},
+            {"path": "register"}
+        ]
+    }
+}
